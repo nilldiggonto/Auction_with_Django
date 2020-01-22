@@ -1,0 +1,120 @@
+
+
+{% extends 'nilam_admin/dashboard.html' %}
+
+
+
+{% block content %}
+
+
+
+
+
+
+
+
+
+
+
+          <!-- Page Heading -->
+          <h1 class="h3 mb-2 text-gray-800 text-center">All Message</h1>
+
+          <!-- DataTales Example -->
+          <div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered table-striped" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                            <th>Title</th>
+                        <th>Description</th>
+                        <th>Time</th>
+                        <th>Status</th>
+                        <th></th>
+                     
+                    </tr>
+                  </thead>
+                  <tfoot>
+                    <tr>
+                        
+                       
+                        <th>Title</th>
+                        <th>Description</th>
+                        <th>Time</th>
+                        <th>Status</th>
+                        <th></th>
+                       
+                       
+                       
+                       
+                      </tr>
+                    </tr>
+                  </tfoot>
+
+
+                  <tbody>
+
+                    {% for obj in message_list %}
+
+                    <tr>
+                    
+                  <td>{{obj.title}}</td>
+
+                  <td>{{obj.description}}</td>
+
+                      <td>{{obj.timestamp|timesince}}</td>
+
+                      {% if obj.active == False %}
+                      <td class="text-danger">Unread</td>
+                      {% else%}
+                      <td class="text-success">Read</td>
+                      {% endif %}
+                      
+
+                      <td><a href="{{obj.get_absolute_url}}" class="btn btn-sm btn-outline-danger">View Full Message</a></td>
+                    </tr>
+
+
+                    {% endfor %}
+
+
+
+                  
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <!-- /.container-fluid -->
+
+
+
+
+
+
+
+
+
+
+
+
+        <a class="scroll-to-top rounded" href="#page-top">
+            <i class="fas fa-angle-up"></i>
+          </a>
+        
+
+
+{% endblock %}
+
+
+
+
+
+
+
+

@@ -1,0 +1,91 @@
+
+      body{
+        background: url(https://www.welovesolo.com/wp-content/uploads/2014/12/p17ugikg31193hpuc184u1ahk15jt5-details.jpg);
+      }
+      .bg-custom-dark{
+        background: #252525;
+      }
+
+      .custom-form{
+        margin-left:20px;
+       
+      }
+
+      .custom-input{
+        border:1px solid white;
+        border-radius: 5px;
+        background: #252525;
+        
+      }
+
+      .custom-search{
+        position: absolute;
+        left:711px;
+      }
+
+      .footer {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        background-color:#252525;
+        color: white;
+        text-align: center;
+     }
+
+     .card{
+       border:none;
+      
+     }
+
+     .input-b-custom{
+       background:none;
+       border-top-right-radius: 10px;
+     }
+
+     .input-u-custom{
+       color:white;
+       background: none;
+       border-bottom-left-radius: 10px;
+     }
+
+     @media only screen and (max-width: 991px) {
+
+      .navbar-collapse{
+        margin-left:134px !important;
+      }
+
+      .navbar-nav{
+        display:inline !important;
+      }
+      .navbar-nav form{
+        display:inline !important; 
+      }
+      .custom-search{
+        top: 80px;
+        left:722px;
+      }
+    }
+
+
+    @media only screen and (max-width: 979px) {
+      .navbar-collapse{
+        margin-left:10px !important;
+      }
+
+      .custom-form input{
+        width:250px !important;
+      }
+
+      .custom-search{
+        left:268px !important;
+      }
+    }
+
+    @media only screen and (max-width: 574px) {
+      .custom-search{
+        top: 96px;
+        left:249px !important;
+      }
+
+    }

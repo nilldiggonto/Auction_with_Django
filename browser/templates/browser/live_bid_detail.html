@@ -1,0 +1,159 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load staticfiles %}
+{% block content %}
+
+
+
+<div class="hero-wrap hero-bread" style="background-image: url({% static 'new_home_static/images/bg_6.jpg' %});">
+  <div class="container">
+    <div class="row no-gutters slider-text align-items-center justify-content-center">
+      <div class="col-md-9 ftco-animate text-center">
+        <h1 class="mb-0 bread bg-dark text-white">All live Bid activity</h1>
+        <p class="breadcrumbs btn btn-dark mb-2 mt-2"><span class="mr-2 "><a class="text-white" href="{% url 'live:live-user-bid-log' %}">Go <span class="text-white">Back</span></a></span> </p>
+
+        <!-- <p class="breadcrumbs btn btn-outline-dark mt-2"><span class="mr-2 "><a class="text-white" href="{% url 'live:live-user-bid-log' %}">Go to Live bid <span class="text-white">Log Page</span></a></span> </p> -->
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+<div class="container-fluid mb-5" >
+    <div class="row ">
+
+
+      
+
+
+
+
+        <div class="col-md-12">
+<!--sssssssssssssssssssssssssssssssssssssssssssssssssssssssss-->
+{% if request.user.is_authenticated %}
+          <!-- <div class="card text-center bg-dark">
+            <div class="card-header">
+              <h4 class="text-light">Welcome! {{ user.username }}</h4>
+              <h4>Name: {{user.first_name}} {{user.last_name}}</h4>
+              <h4>Email: {{user.email}}</h4>
+            </div>
+            <div class="card-body">
+              <a href="{% url 'browse:item_create' %}" class="btn btn-secondary">Post Item</a>
+            </div>
+          </div> -->
+
+        
+
+{% endif %}
+
+            <div class="row">
+              {% if bidder_post %}
+                {% for object in bidder_post %}
+                <div class="col-md-12">
+              <div class="card mb-4 mt-2 text-center bg-dark">
+                  <div class="card-header" style="background-color:rgba(1, 7, 7, 0.534);">
+                      
+                              <h4 class="text-light d-inline">{{object.product_title}}</h4>
+
+                              <span>
+                                  <img width="10%" src="{{object.product_title.image.url}}" alt="">
+                              </span>
+
+                              
+    
+                     
+                  </div>
+    
+             
+                  
+                  <div class="card-body">
+                     <p class="text-white">You just bid <span class='text-danger'> <b> ${{object.bid_price}} </b> </span> and highest bid is <span class='text-info'> <b> ${{object.current_price}} </b> </span>   for this item @ <span class="text-success"> <b>{{object.timestamp|timesince}}</b> </span>ago</p>
+
+                     <!-- {% if object.current_price > } -->
+
+
+
+
+
+                  </div>
+
+                  <div class="card-footer text-center ">
+
+
+                    
+                    {% if object.product_title.item_post == False %}
+                    <span class="pr-4 btn btn-danger"><a class="text-white" href="{{object.product_title.get_absolute_url}}">Bid ended | See Result <i class="fas fa-question-circle"></i></a></span>
+                    {% else %}
+                    <span  class="pr-4  btn btn-warning"><a class="text-white" href="{{object.product_title.get_absolute_url}}">Details <i class="fas fa-question-circle"></i></a></span>
+
+                    {% endif %}
+
+                </div>
+                 
+              </div>
+            </div>
+    
+              {% endfor %}
+
+              {% else %}
+
+              <div class="col-md-12">
+                  <div class="card text-center">
+                      <div class="card-header bg-danger text-light">
+                        <h4>No details available</h4>
+                      </div>
+                    </div>
+
+              </div>
+
+              
+
+              {% endif %}
+
+
+
+            </div>
+
+          <!------------------------------------->
+
+
+        <!--sssssssssssssssssssssssssssssssssssssssssssssssssssssssss-->
+     
+
+
+          <!------------------------------------->
+
+
+       <!--sssssssssssssssssssssssssssssssssssssssssssssssssssssssss-->
+
+
+
+          <!------------------------------------->
+
+
+       <!--sssssssssssssssssssssssssssssssssssssssssssssssssssssssss-->
+
+
+          <!------------------------------------->
+
+        </div>
+
+
+      
+    </div>
+
+
+
+
+
+
+          <!--ending pagination-->
+</div>
+
+
+{% endblock %}

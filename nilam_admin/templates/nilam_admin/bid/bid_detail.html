@@ -1,0 +1,97 @@
+
+
+{% extends 'nilam_admin/dashboard.html' %}
+
+
+
+{% block content %}
+
+
+
+
+
+
+
+
+
+
+          <!-- Page Heading -->
+          <h1 class="h3 mb-2 text-gray-800 text-center">{{bid.product_title}}</h1>
+          <h1 class="mb-2 text-center"><a href="{{bid.get_absolute_url}}" class="btn btn-sm btn-outline-danger">Go to website</a></h1>
+
+          <!-- DataTales Example -->
+          <div class="card shadow mb-4">
+
+                <nav class="breadcrumb">
+                        <a class="breadcrumb-item" href="#">Bid</a>
+                        <a class="breadcrumb-item" href="#">Bid Info</a>
+                        <a class="breadcrumb-item" href="{% url 'nilam_admin:all_bid' %}">All Bid</a>
+                        <span class="breadcrumb-item active">{{bid.product_title}}</span>
+                      </nav>
+
+
+
+
+                <div class="card-header"><b>User Name</b>:{{bid.user}}</div>
+
+                <div class="card-header"><b>Product Name</b>:{{bid.product_title}}</div>
+                <div class="card-header"><b>Category Name</b>:{{bid.product_title.p_category}}</div>
+                <div class="card-body text-center">
+                    
+                    <!-- <p><b>Description</b>: {{product.description | safe | linebreaks}}</p> -->
+                    <img class="text-center" src="{{bid.product_title.image.url}}" alt="" style="max-width:100%; height:300px;">
+                </div>
+                <div class="card-header"><b>Starter Bid:</b> ${{bid.product_title.stating_price}} </div>
+
+                <div class="card-header"><b>Recent Bid:</b> ${{bid.bid_price}} </div>
+                <div class="card-header"><b>Current Value:</b> ${{bid.current_price}} </div>
+
+                <div class="card-header"><b>Bid time</b>:{{bid.timestamp}}</div>
+
+
+                
+                <div class="card-header"></div>
+                {% if bid.product_title.active == True %}
+                <div class="card-header bg-success text-center text-light"><b>Product Serice still on</b></div>
+                {% else %}
+                <div class="card-header bg-danger text-center text-light"><b>Product Serice still on</b></div>
+                {% endif %}
+
+                <!-- <div class="card-footer">
+                    <a href="/admin/browser/product/{{product.id}}/change/" class="btn btn-success">Edit/Delete</a>
+                   
+                </div> -->
+
+
+
+
+            </div>
+        
+        <!-- /.container-fluid -->
+
+
+
+
+
+
+
+
+
+
+
+
+        <a class="scroll-to-top rounded" href="#page-top">
+            <i class="fas fa-angle-up"></i>
+          </a>
+        
+
+
+{% endblock %}
+
+
+
+
+
+
+
+

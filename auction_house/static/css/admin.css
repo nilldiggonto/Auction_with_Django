@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css?family=Slabo+27px&display=swap');
+body{
+    overflow-x:hidden;
+    background-image: url(http://jmd.im/wp-content/uploads/2017/06/blackvii_thumbnail.jpg);
+    font-family: 'Slabo 27px', serif !important;
+    
+}
+
+#header {
+    
+    background: #00070abe !important;
+    color: #ffc;
+    
+}
+
+#branding h1{
+    color: white !important;
+}
+
+.module {
+    /* border: none; */
+    /* margin-bottom: 30px; */
+    background: #000;
+}
+
+
+div.breadcrumbs {
+    background: #0c1114;
+    padding: 10px 40px;
+    border: none;
+    font-size: 14px;
+    color: #16faaf;
+    text-align: left;
+}
+
+#changelist-filter{
+    display: none;
+}
+#content p{
+    color: #990000 !important;
+}
+
+#content h1{
+    color: white;
+}
+
+
+#changelist #toolbar{
+    border-radius: 5px;
+}
+
+#changelist {
+    position: relative;
+    width: 100%;
+    
+}
+
+tbody{
+    background: white;
+}
+
+.model-group{
+    display: none;
+}
+.dashboard #content {
+   width: auto;
+}
+
+
+
+#content-related {
+    border-radius: 30px;
+}
+
+.module caption{
+    background: #626262;
+}
+
+#content p {
+    color:white;
+}
+
+#content p a{
+    color:white;
+}

@@ -1,0 +1,137 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}Nilam | Live{%endblock %}
+{% block content %}
+
+<div class="hero-wrap hero-bread" style="background-image: url({% static 'new_home_static/images/auction_bg.png' %});">
+    <div class="container">
+      <div class="row no-gutters slider-text align-items-center justify-content-center">
+        <div class="col-md-9 ftco-animate text-center">
+            <p class="breadcrumbs text-light"><span class="mr-2"><a href="index.html">Explore</a></span> <span>Items</span></p>
+         
+         
+          
+          
+            <h1 class="mb-0 bread text-light">live Auction</h1>
+           
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+ 
+  {% if object_list %}
+<section class="ftco-section ftco-choose ftco-no-pb ftco-no-pt">
+    	<div class="container">
+				<div class="row no-gutters">
+			
+				
+
+                       
+
+                        {% for object in object_list %}
+
+
+
+                      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+             
+
+    					<div class="col-md-12 mt-4 mb-2">
+	    					<div class="choose-wrap full-wrap img align-self-stretch d-flex align-item-center justify-content-end" style="background-image: url({{object.image.url}});">
+	    						<div class="col-md-7 d-flex align-items-center">
+	    							<div class="text text-white px-5">
+
+
+
+
+                      <span class="subheading badge badge-dark">{{object.p_category}}</span>
+                      {% if request.user.is_staff %}
+                      <span class="badge badge-danger">{{object.user}}</span>
+                      {% endif %}
+                      <!-- <h1 id="demo"></h1> -->
+			    						<h2 class="bg-dark" style="border-radius: 8px;">{{object.title}}</h2>
+                      
+
+
+
+
+                    
+
+
+
+
+
+			    						<p><a href="{{object.get_absolute_url}}" class="btn btn-black px-3 py-2"><i class="fas fa-satellite-dish"></i> Go Live</a></p>
+			    					</div>
+	    						</div>
+	    					</div>
+                        </div>
+
+                        {% endfor %}
+                     
+
+
+
+
+
+
+
+
+
+                              
+                        
+
+
+    
+  			</div>
+    	</div>
+    </section>
+
+
+
+    {% else %}
+
+    <section class="ftco-section ftco-choose ftco-no-pb ftco-no-pt">
+    	
+          <div class="row mt-4 mb-4">
+              <div class="col-md-12">
+                  <div class="card text-center">
+                      <h4 class=" text-light">
+                        <span><img  src="{% static 'new_home_static/images/tenor.gif' %}" alt=""></span>
+                       <span class="badge badge-danger"><i class="fas fa-wrench"></i> Nothin yet! come back later <i class="fas fa-wrench"></i></span>
+                        <span><img  src="{% static 'new_home_static/images/tenor.gif' %}" alt=""></span>
+                      </h4>
+        
+                    </div>
+               </div>
+          </div>
+                <!-- <img style="width: 100%;" src="{% static 'new_home_static/images/under-construction.gif' %}" alt="" class="img-fluid"> -->
+           
+          
+          </section>
+
+    
+    {% endif %}
+{% endblock %}

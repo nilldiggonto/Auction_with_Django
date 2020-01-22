@@ -1,0 +1,877 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load mathfilters %}
+
+{% block content %}
+
+
+
+            
+          
+
+<div class="container-fluid mb-5" style="margin-top:65px;">
+    <div class="row ">
+
+      
+
+           <!-- <div class="col-md-3">
+                <div class="countdown"></div>
+           </div> -->
+
+
+       
+      
+
+        <div class="col-md-8 offset-md-2">
+            <div class="card mb-4 mt-2">
+                <div class="card-header bg-custom-dark text-center">
+
+                  {% if object.active == True %}
+                  
+
+                    {% if second_alarm.live == True %}
+                    
+                    <h4 class="bg-danger text-white" id="nemo"></h4>
+                    {% else %}
+                    <h3 id="demo" class="bg-warning text-white"></h3>
+                    {% endif %}
+
+
+
+
+                    {% else %}
+                    <h3>Bid Ended</h3>
+                    {% endif %}
+                    
+                            <h4 class="text-dark ">{{object.title}}</h4>
+
+                        
+                            {% if object.active == True %}
+                            
+                                    {% if request.user == object.user %}
+
+                                    <h3 class="badge badge-info">Your item posted</h3>
+
+                                    {% elif current_price.current_price == object_price.current_price__max and request.user == current_price_user.user  %}
+
+                                    <h3 class="badge badge-success">You are winning</h3>
+
+                                    {% elif object_price.current_price__max == None and request.user is not object.user  %}
+
+                                    <h3 class="badge badge-success">No Bid Yet.Bid First</h3>
+
+                                      
+                                    {% else %}
+                                    <h3 class="badge badge-danger">You are loosing </h3>
+                                    {% endif %}
+                            {% endif %}      
+
+
+  
+                           
+  
+                 
+                </div>
+  
+           
+                
+                <div class="card-body text-center ">
+                    {% if object.image %}
+                  
+                  <a style="display: inline;"  href="{{object.image.url}}" class="image-popup prod-img-bg"><img src="{{object.image.url}}" style="max-width:100%; height:100px;" alt="Colorlib Template"></a>
+                  {% if object.image2 %}
+                  <a style="display: inline;"  href="{{object.image2.url}}" class="image-popup prod-img-bg"><img src="{{object.image2.url}}" style="max-width:100%; height:100px;" alt="Colorlib Template"></a>
+
+                  {%endif%}
+
+                  {% if object.image3 %}
+                  <a style="display: inline;"  href="{{object.image3.url}}" class="image-popup prod-img-bg"><img src="{{object.image3.url}}" style="max-width:100%; height:100px;" alt="Colorlib Template"></a>
+
+                  {%endif%}
+                  {% if object.image4 %}
+                  <a style="display: inline;"  href="{{object.image4.url}}" class="image-popup prod-img-bg"><img src="{{object.image4.url}}" style="max-width:100%; height:100px;" alt="Colorlib Template"></a>
+                  {% endif %}
+                  
+                  <!-- <a class="d-inline" href="{{object.image.url}}" class="image-popup prod-img-bg"><img src="{{object.image.url}}" style="max-width:100%; height:100px;" alt="Colorlib Template"></a>
+
+                    
+                  <a class="d-inline" href="{{object.image.url}}" class="image-popup prod-img-bg"><img src="{{object.image.url}}" style="max-width:100%; height:100px;" alt="Colorlib Template"></a>
+
+                  <a class="d-inline" href="{{object.image.url}}" class="image-popup prod-img-bg"><img src="{{object.image.url}}" style="max-width:100%; height:100px;" alt="Colorlib Template"></a>
+                    -->
+                  <!-- <a href="{{object.image.url}}" class="image-popup prod-img-bg"><img src="{{object.image.url}}" style="max-width:100%; height:100px;" alt="Colorlib Template"></a> -->
+
+                   
+                  <!-- <a href="{{object.image.url}}" class="image-popup prod-img-bg"><img src="{{object.image.url}}" style="max-width:100%; height:100px;" alt="Colorlib Template"></a>
+                  <a href="{{object.image.url}}" class="image-popup prod-img-bg"><img src="{{object.image.url}}" style="max-width:100%; height:100px;" alt="Colorlib Template"></a>
+                  <a href="{{object.image.url}}" class="image-popup prod-img-bg"><img src="{{object.image.url}}" style="max-width:100%; height:100px;" alt="Colorlib Template"></a> -->
+
+
+                    <!-- <img src="{{object.image.url}}" alt="" width="50%"> -->
+                    {% endif %}
+                    <hr>
+                    
+                </div>
+
+
+
+
+
+
+
+
+               
+              
+{%  if object.active == True %}
+
+                <div class="card-footer text-center" id="before-end">
+                    <span class="badge badge-primary">Starter Price: &#2547;{{object.stating_price}}</span> ||
+
+
+
+
+                    {% if object_price.current_price__max is None %}
+
+
+                    <span class="badge badge-danger">Higgest BId:No bid yet</span> ||
+                    {% else %}
+                   
+                    <span class="badge badge-danger">Higgest BId: &#2547;{{object_price.current_price__max}}</span> ||
+
+                    {% endif %}
+
+
+
+                    <span class="badge badge-success">Buy out Price: &#2547;{{object.price}}</span>
+
+                    {% if request.user == object.user %}
+                    <hr>
+
+                    <form action="" method="POST">
+
+                      {% csrf_token%}
+
+                      {{post_form|crispy}}
+
+                      {% if a_false == False %}
+
+
+                      <!--Ending Bid option-->
+                      <h3>
+                          <button style="width: 100%;" type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#stopAuction">Confirm Bid End</button>
+
+                         </h3>
+
+
+                         
+
+                         <div class="modal fade" id="stopAuction" role="dialog">
+                            <div class="modal-dialog modal-sm">
+                              <div class="modal-content">
+
+                               
+                                
+                                <div class="modal-body">
+                                  <p class="bg-warning text-dark">Confirm for Transcation!!</p>
+                                  
+                                  <p class="text-black">Are you sure?</p>
+
+                                  
+                      <input id="confirm-form" style="width: 100%;" type="submit" class="btn btn-sm btn-danger " value="Move to transcation">
+                                  
+
+
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+
+                      <!-- <input id="confirm-form" style="width: 100%;" type="submit" class="btn btn-sm btn-danger " value="Stop the bidding"> -->
+
+
+
+
+
+
+                      {% else %}
+                      <!--End Bid confirm now-->
+                      <h3 >
+                          <button style="width:100%;" type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#confirmEnd">Confirm For transcation</button>
+
+                         </h3>
+
+
+                         <div  class="modal fade" id="confirmEnd" role="dialog">
+                            <div class="modal-dialog modal-sm">
+                              <div class="modal-content">
+
+                               
+                                
+                                <div class="modal-body" id="bid-form-body">
+                                  <p class="badge badge-danger text-white">Confirm transaction!!</p>
+                                  
+                                  <p class="text-black">Go check transaction!</p>
+
+                                  
+                                  <input id="confirm-form-close" style="width: 100%; " type="submit" class="btn btn-sm btn-success " value="Confirmation">
+
+
+
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+
+                      <!-- <input id="confirm-form-close" style="width: 100%; " type="submit" class="btn btn-sm btn-danger " value="Close Bidding"> -->
+
+                      {% endif%}
+                    </form>
+                      
+                 
+                  {% if a_false == False  %}
+
+                        <!--countdown option-->
+                        <h3 >
+                            <button id="bid-form" style="width:100%;" type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#countdownModal">Start Ending countdown</button>
+
+                           </h3>
+
+
+
+                           
+                           <div class="modal fade" id="countdownModal" role="dialog">
+                              <div class="modal-dialog modal-sm">
+                                <div class="modal-content">
+  
+                                 
+                                  
+                                  <div class="modal-body" id="bid-form-body">
+                                    <p class="badge badge-danger text-white">5 min countdown!!</p>
+                                    
+                                    <p class="text-black">Countdown start?!</p>
+  
+                                    
+                                    <form action="" method="GET" id="no-need">
+                                        {% csrf_token %}
+                                        {{second_form|crispy}}
+                                        
+                                        <input name="ending_count" style="width: 100%;" type="submit" class="btn btn-sm btn-warning "  value="Start countdown">
+                                    </form>
+  
+  
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
+
+                        <!-- <form action="" method="GET" id="no-need">
+                                {% csrf_token %}
+                                {{second_form|crispy}}
+                                
+                                <input name="ending_count" style="width: 100%;" type="submit" class="btn btn-sm btn-warning "  value="Start Ending countdown">
+                            </form> -->
+                            {% endif%}
+
+                    {% else %}
+                    <!--Bidding form-->
+                           <h3 id="bid-form">
+                            <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#bidModal">Bid Now</button>
+
+                           </h3>
+
+
+
+
+                           <div class="modal fade" id="bidModal" role="dialog">
+                            <div class="modal-dialog modal-sm">
+                              <div class="modal-content">
+
+                               
+                                
+                                <div class="modal-body" id="bid-form-body">
+                                  <h4 class="bg-danger text-white">&#2547;10 will Add!!</h4>
+                                  
+                                  <p class="text-black">Are you sure? Confirm it!</p>
+
+                                  
+                                  <form action="" method="POST"  class="mt-4">
+                                    {% csrf_token %}
+                                    {{form|crispy}}
+                                    <input style="width: 100%;" type="submit" class="btn btn-sm btn-success " value="Confirm Bid">
+                                </form>
+
+
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+
+
+                    <!-- <form action="" method="POST" id="bid-form" class="mt-4">
+                        {% csrf_token %}
+                        {{form|crispy}}
+                        <input style="width: 100%;" type="submit" class="btn btn-sm btn-outline-success " value="$10 will be add to your Bid">
+                    </form> -->
+
+
+
+                    {% endif %}
+                </div>
+
+              
+
+
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% else %}
+              
+
+
+  
+            </div>
+        </div>
+
+
+
+      
+
+
+        <div class="col-md-12" id="bid-end">
+
+                <div class="card text-center  text-light">
+                    <div class="card-header bg-dark text-center">
+                        <h1 class="text-white" >Bid  Ended</h1>
+                    </div> <!--card-header-->
+      
+                    {% if request.user == current_price_user.user %}
+      <hr>
+                    <div class="card-body bg-dark text-center">
+                      <h4 class="text-white" ><!--{{current_price_user.user}}-->You won with &#2547;{{current_price.current_price}} bid</h4>
+                      <hr>
+                      <h4 class="text-white" >Starting price was: &#2547;{{object.stating_price}}</h4>
+                      <h4 class="text-white" >Your Total Bid was: &#2547;{{ current_price.current_price|sub:object.stating_price  }} </h4>
+                    </div><!--card-body-->
+      
+                    {% if checkout.active %}
+                    <div class="card-footer text-center">
+                      <h4 class="bg-dark text-white">You have checkout..Your item will be shipped for any problem contact us!</h4>
+                    </div><!--card-footer-->
+                    {% else %}
+  
+                    <div class="card-footer text-center" >
+                        <a href="#" class="btn btn-info" data-toggle="modal" data-target="#myModalcheck">Checkout</a>
+                    </div><!--card-footer-->
+                    {% endif %}
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+                    {% elif request.user == object.user %}
+                    <div class="card-body bg-dark text-center">
+                        {% if current_price.current_price  %}
+                          <h4 class="text-light">Your item auctioned  with &#2547;{{current_price.current_price}} bid</h4>
+                          <hr>
+                          <h4 class="text-light">Starting price was: &#2547;{{object.stating_price}}</h4>
+                          {% else %}
+                          <h4 class="text-light">No one bid for this item</h4>
+  
+                          {% endif %}
+                        </div>
+          
+                        <div class="card-footer">
+  
+                          {% if object.active == True %}
+                            
+  
+                            <form action="" method="POST">
+                              {% csrf_token%}
+                              {{post_form|crispy}}
+                              <input class="btn btn-info" type="submit" value="Confirm">
+                            </form>
+  
+                            {% elif object.active == False %}
+                                 {% if current_price.current_price  %}
+                                    <H4 class="bg-info text-center p-4" >For Transaction we will contact you shortly. If anything wrong 
+                                      <span><a href="{% url 'browse:contact' %}" class="btn btn-warning"> contact us</a></span>
+                                    </H4>
+                                    {% else %}
+                                    <h4 class="bg-warning text-center">You can post your item again for auction. Thanks</h4>
+                                    {% endif%}
+  
+                                {% endif %}
+                          
+                        </div>
+                     
+                        {% else %}
+                        <h4>You lose this auction</h4>
+      
+                    {% endif %}
+
+                    {% endif %}
+        
+                </div>
+
+               
+              </div>
+              
+      <!--i dont even know what i did 
+     :/-->
+                
+
+
+
+
+
+
+
+                                      <!--MOdel area plz work-->
+                                      <div class="modal fade" id="myModalcheck">
+                                            <div class="modal-dialog modal-lg">
+                                              <div class="modal-content">
+                                              
+                                                <!-- Modal Header -->
+                                                <div class="modal-header">
+                                                  
+                                                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                </div>
+                                                
+                                                <!-- Modal body -->
+                                                <div class="modal-body">
+                                                 
+                              
+                                  <div class="row mb-4 " >
+                                      
+                                          <div class="col-md-8 order-md-1 offset-md-2 bg-white p-4" style="opacity: .9;">
+                                            <h4 class="mb-3 text-center bg-info mt-2 p-2 text-light">CheckOut</h4>
+                                            <form action="{% url 'checkout:c_create' %}" class="needs-validation" novalidate method="POST">
+                                              {% csrf_token %}
+                                            
+                                      
+                                              <div class="mb-3">
+                                                <label for="username">Username</label>
+                                                <div class="input-group">
+                                                  <div class="input-group-prepend">
+                                                    <span class="input-group-text">@</span>
+                                                  </div>
+                                                  <input readonly name="username" type="text" class="form-control" id="username" value="{{current_price_user.user}}" placeholder="Username" required>
+                                                  <div class="invalid-feedback" style="width: 100%;">
+                                                    Your username is required.
+                                                  </div>
+                                                </div>
+                                              </div>
+                              
+                                              <div class="mb-3">
+                                                  <label for="username">Product Name</label>
+                                                  <div class="input-group">
+                                                    
+                                                    <input readonly name="p_name" type="text" class="form-control" id="username" placeholder="Product name" value="{{object.title}}" required>
+                                                    <div class="invalid-feedback" style="width: 100%;">
+                                                      Your username is required.
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                      
+                                              <div class="mb-3">
+                                                <label for="email">Email <span class="text-muted">(Optional)</span></label>
+                                                <input name="email" type="email" class="form-control" id="email" value="{{current_price_user.user.email}}" placeholder="you@example.com">
+                                                <div class="invalid-feedback">
+                                                  Please enter a valid email address for shipping updates.
+                                                </div>
+                                              </div>
+                                      
+                                              <div class="mb-3">
+                                                <label for="address">Address</label>
+                                                <input name="address" type="text" class="form-control" id="address" placeholder="1234 Main St" required>
+                                                <div class="invalid-feedback">
+                                                  Please enter your shipping address.
+                                                </div>
+                                              </div>
+                                      
+                                              <div class="mb-3">
+                                                <label for="address2">Phone<span class="text-muted"></span></label>
+                                                <input name="phone" type="text" class="form-control" id="address2" placeholder="Apartment or suite">
+                                              </div>
+                              
+                                              <div class="mb-3">
+                                                  <label for="address2">City<span class="text-muted"></span></label>
+                                                  <input name="city" type="text" class="form-control" id="address2" placeholder="Apartment or suite">
+                                                </div>
+                                     
+                                                
+                                                <div class="mb-3">
+                                                    <label for="address2">Zip<span class="text-muted"></span></label>
+                                                    <input name="zip" type="number" class="form-control" id="address2" placeholder="Apartment or suite">
+                                                  </div>
+                                         
+                                     
+                                              <hr class="mb-4">
+                                             
+                                            
+                                              <hr class="mb-4">
+                                      
+                                              <h4 class="mb-3">Payment</h4>
+                                      
+                                              <div class="d-block my-3">
+                                                <div class="custom-control custom-radio">
+                                                  <input id="credit" name="paymentMethod" type="radio" class="custom-control-input" checked required>
+                                                  <label class="custom-control-label" for="credit">Credit card</label>
+                                                </div>
+                                                <div class="custom-control custom-radio">
+                                                  <input id="debit" name="paymentMethod" type="radio" class="custom-control-input" required>
+                                                  <label class="custom-control-label" for="debit">Debit card</label>
+                                                </div>
+                                                <div class="custom-control custom-radio">
+                                                  <input id="paypal" name="paymentMethod" type="radio" class="custom-control-input" required>
+                                                  <label class="custom-control-label" for="paypal">PayPal</label>
+                                                </div>
+                                              </div>
+                                              <div class="row">
+                                                <div class="col-md-6 mb-3">
+                                                  <label for="cc-name">Name on card</label>
+                                                  <input name="card_name" type="text" class="form-control" id="cc-name" placeholder="" required>
+                                                  <small class="text-muted">Full name as displayed on card</small>
+                                                  <div class="invalid-feedback">
+                                                    Name on card is required
+                                                  </div>
+                                                </div>
+                                                <div class="col-md-6 mb-3">
+                                                  <label for="cc-number">Credit card number</label>
+                                                  <input name="card_no" type="number" class="form-control" id="cc-number" placeholder="" required>
+                                                  <div class="invalid-feedback">
+                                                    Credit card number is required
+                                                  </div>
+                                                </div>
+                                              </div>
+                                           
+                                              <hr class="mb-4">
+                                              <button class="btn btn-primary btn-lg btn-block" type="submit">Continue to checkout</button>
+                                            </form>
+                                          </div>
+                              </div>
+                              
+                              
+                                                </div>
+                                                
+                                                <!-- Modal footer -->
+                                               
+                                                
+                                              </div>
+                                            </div>
+                                          </div>
+                              
+                                          <!--ending modal area plz work-->
+
+
+
+       </div>
+
+
+
+
+
+
+
+
+
+
+
+
+       {% if object.active == True %}
+        
+<!--navigation pill area-->
+        {% if object.user == request.user %}
+
+        {% else%}
+<div class="col md-12 text-center">
+  <a style="width:50%;" href="#" data-toggle="modal" data-target="#dModal" class="btn btn-info ">Details</a>
+
+  
+
+  <div class="modal fade" id="dModal" role="dialog">
+      <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+
+         
+          
+          <div class="modal-body" id="bid-form-body">
+            <h4 class="bg-danger text-white">Not confirmed yet</h4>
+            
+            
+
+            
+        
+
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+</div>
+
+{% endif %}
+
+
+{% endif %}
+
+        <div class="row mt-5">
+                <div class="col-md-12 nav-link-wrap">
+                  <div class="nav nav-pills d-flex text-center" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                    <a class="nav-link ftco-animate active mr-lg-1" id="v-pills-1-tab" data-toggle="pill" href="#v-pills-1" role="tab" aria-controls="v-pills-1" aria-selected="true"><i class="fas fa-info-circle"></i> Description</a>
+        
+                    <a class="nav-link ftco-animate mr-lg-1" id="v-pills-2-tab" data-toggle="pill" href="#v-pills-2" role="tab" aria-controls="v-pills-2" aria-selected="false"><i class="fas fa-exclamation-triangle"></i> Rules</a>
+        
+                    <a class="nav-link ftco-animate" id="v-pills-3-tab" data-toggle="pill" href="#v-pills-3" role="tab" aria-controls="v-pills-3" aria-selected="false"><i class="fas fa-id-card-alt"></i> Activity Log</a>
+        
+                  </div>
+                </div>
+
+                <div class="col-md-12 tab-wrap">
+                  
+                  <div class="tab-content bg-light" id="v-pills-tabContent">
+                     
+        
+                    <div class="tab-pane fade show active" style="color:black !important; overflow-x:auto !important;" id="v-pills-1" role="tabpanel" aria-labelledby="day-1-tab">
+                        <div class="p-4">
+                            <h3 class="mb-4">{{object.title}}</h3>
+                            <p >{{object.description | safe | linebreaks}}</p>
+                        </div>
+                    </div>
+        
+                    <div class="tab-pane fade" id="v-pills-2" style="color:black !important;" role="tabpanel" aria-labelledby="v-pills-day-2-tab">
+                        <div class="p-4">
+                            <h3 class="mb-4">Rules for the bidding</h3>
+                            {% if live_rule %}
+                              <p >{{live_rule.description | safe | linebreaks}}</p>
+                            {% endif%}
+                            <!-- <p>On her way she met a copy. The copy warned the Little Blind Text, that where it came from it would have been rewritten a thousand times and everything that was left from its origin would be the word "and" and the Little Blind Text should turn around and return to its own, safe country. But nothing the copy said could convince her and so it didn’t take long until a few insidious Copy Writers ambushed her, made her drunk with Longe and Parole and dragged her into their agency, where they abused her for their.</p> -->
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="v-pills-3" role="tabpanel" aria-labelledby="v-pills-day-3-tab">
+                        <div class="row p-4">
+                                {% if bidder_post %}
+                                {% for object in bidder_post %}
+                                <div class="col-md-11">
+                              <div class="card mb-4 mt-2 text-center">
+                                  <div class="card-header" style="background-color:rgb(21, 68, 68);">
+                                      
+                                              <h4 class="text-light d-inline">{{object.product_title}}</h4>
+                
+                                              <span>
+                                                  <img width="10%" src="{{object.product_title.image.url}}" alt="">
+                                              </span>
+                    
+                                     
+                                  </div>
+                    
+                             
+                                  
+                                  <div class="card-body">
+                                     <p>You just bid <span class='text-danger'> <b> ${{object.bid_price}} </b> </span> and highest bid is <span class='text-info'> <b> ${{object.current_price}} </b> </span>   for this item  @<span class="text-success"> <b>{{object.timestamp|timesince}}</b> </span>  ago!</p>
+                
+                                     <!-- {% if object.current_price > } -->
+                
+                
+                
+                
+                
+                                  </div>
+                
+                                 
+                                 
+                              </div>
+                            </div>
+                    
+                              {% endfor %}
+                
+                              {% else %}
+                
+                              <div class="col-md-12">
+                                  <div class="card text-center">
+                                      <div class="card-header bg-danger text-light">
+                                        <h4>No details available</h4>
+                                      </div>
+                                    </div>
+                
+                              </div>
+                
+                              
+                
+                              {% endif %}
+                                        
+                           
+                                     </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+{% endblock %}
+
+
+{% block script %}
+
+<script>
+    // Set the date we're counting down to
+    
+    //document.getElementById("bid-end").style.display = "none";
+    var a = '{{object.end_date|date:"M j, Y H:i:s"}}';
+    var countDownDate = new Date(a).getTime();
+    
+    // Update the count down every 1 second
+    var x = setInterval(function() {
+    
+      // Get today's date and time
+      var now = new Date().getTime();
+        
+      // Find the distance between now and the count down date
+      var distance = countDownDate - now;
+        
+      // Time calculations for days, hours, minutes and seconds
+      var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        
+      // Output the result in an element with id="demo"
+      document.getElementById("demo").innerHTML = '<b>'+ hours + "</b> h <b>"
+      + minutes + "</b> m <b>" + seconds + "</b> s " + "left";
+        
+      // If the count down is over, write some text 
+      if (distance < 0) {
+        clearInterval(x);
+        document.getElementById("demo").innerHTML = "EXPIRED!";
+        document.getElementById("bid-form").style.display = "none";
+        document.getElementById("bid-form-body").style.display = "none";
+          
+          
+
+
+        //document.getElementById('chosenresult').value = 'Confirm Now';
+      }
+    }, 1000);
+    
+
+
+
+
+
+
+
+      var b = '{{second_alarm.end_timer|date:"M j, Y H:i:s"}}';
+      console.log(b)
+      
+      var countDownDated = new Date(b).getTime();
+      //console.log(countDownDate)
+      
+      // Update the count down every 1 second
+      var xy = setInterval(function() {
+      
+        // Get today's date and time
+        var nows = new Date().getTime();
+         // console.log(now)
+        // Find the distance between now and the count down date
+        var distances = countDownDated - nows;
+        console.log(distances)
+          
+        // Time calculations for days, hours, minutes and seconds
+        var days = Math.floor(distances / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((distances % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((distances % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distances % (1000 * 60)) / 1000);
+          
+        // Output the result in an element with id="demo"
+        document.getElementById("nemo").innerHTML ="Soon item will expire. Bid first </br>"+  minutes + "</b> m <b>" + seconds + "</b> s " + "left";
+        //document.getElementById("confirm-form-close").style.display = "none"; 
+        // If the count down is over, write some text 
+        if (distances < 0) {
+          clearInterval(x);
+          document.getElementById("nemo").innerHTML = "EXPIRED! WAITING FOR CONFIRMATION";
+          document.getElementById("bid-form").style.display = "none";
+          document.getElementById("bid-form-body").style.display = "none";
+         // document.getElementById("confirm-form-close").style.display = "block ";
+
+          
+
+          //document.getElementById("no-need").style.display = "none";
+          //document.getElementById("confirm-form").innerHTML = "Confirm Now!";
+
+        }
+      }, 1000);
+            
+      
+    </script>
+
+{% endblock %}

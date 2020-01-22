@@ -1,0 +1,208 @@
+{% extends 'user_account/base.html' %}
+{% load crispy_forms_tags %}
+{% load mathfilters %}
+
+{% block content %}
+
+<div class="container-fluid mb-5" style="margin-top:65px;">
+    <div class="row ">
+
+
+       
+      
+
+        
+
+
+
+
+        <div class="col-md-12 mt-2">
+                {% if object.active %}
+                <div class="card ">
+                    <div class="card-header bg-danger text-light text-center">
+                        <h3>{{a}}</h3>
+                    </div>
+                </div>
+                {% endif %}
+
+            {% if object.active == True %}
+<!--sssssssssssssssssssssssssssssssssssssssssssssssssssssssss-->
+          <div class="card mb-4 mt-2">
+              <div class="card-header bg-custom-dark text-center">
+                  
+                          <h4 class="text-light ">{{object.title}}</h4>
+                          
+
+                         
+
+                          <h4 class=" text-white cd100"><i class="fas fa-clock"> <span>Time left 5 days</span></i></h4>
+                 <a href="{% url 'browse:item_index' %}" class="btn btn-sm btn-dark">Back</a>
+              </div>
+
+         
+              
+              <div class="card-body text-center">
+                  {% if object.image %}
+                  <img src="{{object.image.url}}" alt="" width="50%">
+                  {% endif %}
+                  <hr>
+                  <h5>{{object.description}}</h5>
+              </div>
+              <div class="card-footer text-center ">
+                  <!-- <span class="pr-4 btn btn-dark"><a class="text-light" href="">Buy Out <i class="fas fa-bullhorn"></i></a>
+                      <h4>${{object.price}}</h4>
+                  </span> -->
+
+                  <span class="pr-4 btn btn-dark"><a class="text-light" href="">Starting Bid <i class="fas fa-bullhorn"></i></a>
+                    <h4>${{object.stating_price}}</h4>
+                </span>
+
+                {% if object_price.current_price__max is None %}
+                  <span  class="pr-4 btn btn-info"><a class="text-white" href="">NO Bid Yet <i class="fas fa-comment-dollar"></i></a>
+                    <h4>Bid first</h4>
+                  </span>
+                
+                {% else %}
+                  <span  class="pr-4 btn btn-info"><a class="text-white" href="">Highest Bid <i class="fas fa-comment-dollar"></i></a>
+                     
+                      <h4>${{object_price.current_price__max}}</h4>
+
+                     
+                  
+                     
+                  
+                  </span>
+                  {% endif %}
+
+                  
+
+                  {% if object.user == user %}
+                        
+                  {% else %}
+                  <span  class="pr-4 btn btn-danger"><a class="text-white" href="">Place Bid 
+
+                          
+
+                      
+                      <i class="fas fa-funnel-dollar"></i></a>
+                  
+                      <form id="bid-post" action="" method="POST" style="display: inline-flex;" >
+                          {% csrf_token %}
+                          {{form|crispy}}
+                         
+                              <input style="margin-left: 2px; margin-bottom:14px;" class="btn btn-sm btn-outline-dark" type="submit" value="bid">
+                          </form>
+                  </span>
+
+                  {% endif %}
+                  <!-- <span  class="pr-4 btn btn-warning"><a class="text-white" href="">Details <i class="fas fa-question-circle"></i></a></span> -->
+
+              </div>
+          </div>
+
+
+
+          {% else %}
+
+
+
+          <div class="card text-center  text-light">
+              <div class="card-header bg-danger">
+                  <h1>Bid already Ended</h1>
+              </div>
+
+              {% if request.user == current_price_user.user %}
+<hr>
+              <div class="card-body bg-success">
+                <h4>{{current_price_user.user}} won with ${{current_price.current_price}} bid</h4>
+                <hr>
+                <h4>Starting price: ${{object.stating_price}}</h4>
+                <h4>Your Total Bid was:${{ current_price.current_price|sub:object.stating_price  }} </h4>
+              </div>
+
+              <div class="card-footer">
+                  <a href="{% url 'billing:bill' %}" class="btn btn-info">Checkout</a>
+              </div>
+
+
+              {% else if request.user == object.user %}
+              <div class="card-body bg-success">
+                    <h4>Your item auctioned  with ${{current_price.current_price}} bid</h4>
+                    <hr>
+                    <h4>Starting price was: ${{object.stating_price}}</h4>
+                  </div>
+    
+                  <div class="card-footer">
+                      <a href="{% url 'billing:bill' %}" class="btn btn-info">Remove</a>
+                  </div>
+
+
+              {% endif %}
+          </div>
+
+          {% endif %}
+
+
+          <!------------------------------------->
+
+         
+   
+
+
+
+
+
+
+          <!------------------------------------->
+
+        </div>
+
+
+
+    </div>
+</div>
+
+
+
+
+
+
+
+
+{% endblock %}
+
+
+{% block script %}
+
+<script>
+   /* $(document).on('submit','#bid-post',function(e){
+        e.preventDefault();
+
+        $.ajax({
+            type : 'POST',
+            url : '/',
+            data :{
+
+            current_price: $('#post-text').val(),
+            csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+            
+            },
+            
+            success:function(){
+
+                alert('its working')
+                console.log('aa')
+            },
+            error:function(){
+                alert('No its not')
+                console.log('aass')
+            }
+
+        })
+    })
+
+    */
+
+</script>
+
+{% endblock %}

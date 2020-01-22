@@ -1,0 +1,107 @@
+
+
+{% extends 'nilam_admin/dashboard.html' %}
+
+
+
+{% block content %}
+
+
+
+
+
+
+
+
+
+
+          <!-- Page Heading -->
+          <h1 class="h3 mb-2 text-gray-800 text-center">{{product.title}}</h1>
+          <h1 class="mb-2 text-center"><a href="{{product.get_absolute_url}}" class="btn btn-sm btn-outline-danger">Go to website</a></h1>
+
+
+          <!-- DataTales Example -->
+          <div class="card shadow mb-4">
+
+                <nav class="breadcrumb">
+                        <a class="breadcrumb-item" href="#">Dashboard</a>
+                        <a class="breadcrumb-item" href="#">Browsing Related</a>
+                        <a class="breadcrumb-item" href="{% url 'nilam_admin:product' %}">All Products</a>
+                        <span class="breadcrumb-item active">{{product.title}}</span>
+                      </nav>
+
+
+
+
+
+                <div class="card-header"><b>Product Name</b>:{{product.title}}</div>
+                <div class="card-header"><b>Category Name</b>:{{product.p_category}}</div>
+                <div class="card-body">
+
+                    <div class="row">
+                        <div class="col-md-6">
+                                <p ><b>Description</b>: {{product.description | safe | linebreaks}}</p>
+
+                        </div>
+
+                        <div class="col-md-6">
+                                <img src="{{product.image.url}}" alt="" class="card-img-bottom">
+
+                        </div>
+                    </div>
+                    
+
+
+
+                </div>
+                <div class="card-header"><b>Product Created:</b> {{product.timestamp}} ago</div>
+                {% if days_left > 0 %}
+                <div class="card-header text-success"><b>Product Expire:</b>{{product.end_date}} times still up</div>
+                {% else %}
+                <div class="card-header text-danger">Expired</div>
+                {% endif%}
+                <div class="card-header"></div>
+                {% if product.active == True %}
+                <div class="card-header text-white text-center bg-success"><b>Product Service still on</b></div>
+                {% else %}
+                <div class="card-header text-white text-center bg-danger"><b>Product Service off</b></div>
+                {% endif %}
+
+                <div class="card-footer">
+                    <!-- <a href="/admin/browser/product/{{product.id}}/change/" class="btn btn-success">Edit/Delete</a> -->
+                   
+                </div>
+
+
+
+
+            </div>
+        
+        <!-- /.container-fluid -->
+
+
+
+
+
+
+
+
+
+
+
+
+        <a class="scroll-to-top rounded" href="#page-top">
+            <i class="fas fa-angle-up"></i>
+          </a>
+        
+
+
+{% endblock %}
+
+
+
+
+
+
+
+

@@ -1,0 +1,351 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>{%block title %} Nilam | Site {%endblock %} </title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="shortcut icon" href="{% static 'new_home_static/images/auction_logo.png' %}" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
+    <link href="{% static 'nilam/vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
+
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css"> -->
+    <link rel="stylesheet" href="{% static 'new_home_static/css/icon-awesome.css' %}">
+    <link rel="stylesheet" href="{% static 'new_home_static/css/open-iconic-bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'new_home_static/css/animate.css' %}">
+    
+    <link rel="stylesheet" href="{% static 'new_home_static/css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'new_home_static/css/owl.theme.default.min.css' %}">
+    <link rel="stylesheet" href="{% static 'new_home_static/css/magnific-popup.css' %}">
+
+    <link rel="stylesheet" href="{% static 'new_home_static/css/aos.css' %}">
+
+    <link rel="stylesheet" href="{% static 'new_home_static/css/ionicons.min.css' %}">
+
+    <link rel="stylesheet" href="{% static 'new_home_static/css/bootstrap-datepicker.css' %}">
+    <link rel="stylesheet" href="{% static 'new_home_static/css/jquery.timepicker.css' %}">
+
+    
+    <link rel="stylesheet" href="{% static 'new_home_static/css/flaticon.css' %}">
+    <link rel="stylesheet" href="{% static 'new_home_static/css/icomoon.css' %}">
+    <link rel="stylesheet" href="{% static 'new_home_static/css/style.css' %}">
+
+
+    {% block style %}   {%endblock%}
+
+    <style>
+
+      #id_image{
+          background: rgba(0, 0, 0, 0.733);
+          width: 100%;
+      }
+
+      #id_image2 {
+        background: rgba(68, 4, 4, 0.733);
+        width: 100%;
+    }
+
+    #id_image3 {
+      background: rgba(45, 4, 61, 0.733);
+      width: 100%;
+  }
+
+  #id_image4 {
+    background: rgba(6, 73, 78, 0.733);
+    width: 100%;
+}
+
+      form .form-group .col-form-label span {
+        display:none !important;
+      }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      @media only screen and (max-width:800px) {
+        #home-section{
+          display: none;
+        }
+      }
+
+      
+
+    </style>
+  </head>
+  <body class="goto-here">
+        <!-- {% include 'partial/_alert.html' %} -->
+		<div class="py-1 bg-black">
+    	<div class="container">
+    		<div class="row no-gutters d-flex align-items-start align-items-center px-md-0">
+	    		<div class="col-lg-12 d-block">
+		    		<div class="row d-flex">
+		    			<div class="col-md pr-4 d-flex topper align-items-center">
+					    	<div class="icon mr-2 d-flex justify-content-center align-items-center"><span class="icon-phone2"></span></div>
+						    <span class="text">+ 88 014 05199143</span>
+					    </div>
+					    <div class="col-md pr-4 d-flex topper align-items-center">
+					    	<div class="icon mr-2 d-flex justify-content-center align-items-center"><span class="icon-paper-plane"></span></div>
+						    <span class="text">nilam@gmail.com</span>
+					    </div>
+					    <div class="col-md-5 pr-4 d-flex topper align-items-center text-lg-right">
+						    <span class="text">3-5 Business days delivery &amp; Free Returns</span>
+					    </div>
+				    </div>
+          </div>
+          
+        </div>
+        
+
+
+		  </div>
+    </div>
+    
+
+
+
+
+
+
+    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+	    <div class="container">
+          <a class="navbar-brand" href="{% url 'home' %}"> <span><img src="{% static 'new_home_static/images/auction_logo_sm.png' %}" alt=""></span> Nilam.com
+        
+            {% if user.is_authenticated %} <span class="text-dark">(welcome! {{user.username}})</span>   {% endif%}
+        </a>
+	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="oi oi-menu"></span> Menu
+        </button>
+        <!-- <span class="oi oi-menu"></span> Menu -->
+	      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+	        <ul class="navbar-nav ml-auto">
+			  <li class="nav-item "><a href="{% url 'home' %}" class="nav-link"> <span><i class="fas fa-house-damage"></i></span> Home</a></li>
+			  <li class="nav-item "><a href="{%url 'browse:category-list' %}" class="nav-link"> <span><i class="fas fa-list-ul"></i></span> Category</a></li>
+	       
+	          <li class="nav-item"><a href="{% url 'browse:item_index' %}" class="nav-link"> <span><i class="fas fa-globe-americas"></i></span> Explore</a></li>
+              <!-- <li class="nav-item"><a href="{% url 'browse:contact' %}" class="nav-link"> <span><i class="fas fa-at"></i></span> Contact</a></li> -->
+
+              
+              {% if user.is_authenticated %}
+	          <!-- <li class="nav-item"><a href="{% url 'live:live-list' %}" class="nav-link"> <span><i class="fas fa-satellite-dish"></i></span>Room</a></li> -->
+
+
+			  <li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user-circle"></i> Account</a>
+				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="{% url 'billing:address' %}"><i class="fas fa-user-tie"></i> Profile </a>
+
+            <a class="dropdown-item" href="{% url 'live:live-list' %}"><i class="fas fa-satellite-dish"></i> Go Premium</a>
+            <a class="dropdown-item" href="{% url 'live:live-create' %}"><i class="fas fa-plus-square"></i> Premium Auction</a>
+
+            <a class="dropdown-item" href="{% url 'browse:item_create' %}"><i class="fas fa-gavel"></i> Auction</a>
+					<a class="dropdown-item" href="{% url 'browse:account' %}"><i class="fas fa-history"></i> Auction History</a>
+				  <a class="dropdown-item" href="{% url 'browse:bid-log' %}"><i class="fas fa-history"></i> Bidding History</a>
+				  <a class="dropdown-item badge badge-danger" href="{% url 'logout' %}"> <span><i class="fas fa-sign-out-alt"></i></span> Logout</a>
+				</div>
+              </li>
+
+              {% else %}
+
+              <li class="nav-item"><a href="{% url 'login' %}" class="nav-link"> <span><i class="fas fa-user-check"></i></span> Login</a></li>
+              <li class="nav-item"><a href="{% url 'register' %}" class="nav-link"> <span><i class="fas fa-user-plus"></i></span> Register</a></li>
+              {% endif %}
+
+
+              {% if request.user.is_staff %}
+              <li class="nav-item"><a href="{% url 'nilam_admin:dashboard' %}" class="nav-link"  > <span><i class="fas fa-fw fa-tachometer-alt"></i></span> Admin</a></li>
+              {% endif %}
+
+
+              <li class="nav-item"><a href="#" class="nav-link"  data-toggle="modal" data-target="#myModal"> <span><i class="fas fa-search-dollar"></i></span> Search</a></li>
+
+              
+
+          </ul>
+
+          
+          
+          
+	      </div>
+      </div>
+      
+      
+	  </nav>
+    <!-- END nav -->
+
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog modal-lg">
+        
+          <!-- Modal content-->
+          <div class="modal-content" style="background-color:rgba(255, 0, 0, 0) !important; border:none !important;">
+            
+            <div >
+              <form action="{% url 'browse:item_index' %}" method="GET">
+                  <div class="active-pink-3 active-pink-4 mb-4">
+                      <input class="form-control" type="text" placeholder="Search" aria-label="Search" value="{{request.GET.q}}" name="q">
+
+                    </div>
+              </form>
+            </div>
+           
+          </div>
+          
+        </div>
+      </div>
+
+    
+
+
+    {%block content %}
+
+
+
+    {% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <footer class="ftco-footer ftco-section" style="background-image: url('{% static 'new_home_static/images/foo.jpg' %}');background-attachment: fixed;background-position: center;background-repeat: no-repeat;" >
+      <div class="container">
+      	<div class="row">
+      		<div class="mouse">
+						<a href="#" class="mouse-icon">
+							<div class="mouse-wheel"><span class="ion-ios-arrow-up"></span></div>
+						</a>
+					</div>
+      	</div>
+        <div class="row mb-5">
+          <div class="col-md">
+            <div class="ftco-footer-widget mb-4">
+              <h2 class="ftco-heading-2"> <span> <img src="{% static 'new_home_static/images/auction.png' %}" alt=""></span> Nilam.Com</h2>
+              <p>Why bargain when you can Bid.</p>
+              <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
+                <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
+                <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
+                <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md">
+            <div class="ftco-footer-widget mb-4 ml-md-5">
+              <h2 class="ftco-heading-2">Menu</h2>
+              <ul class="list-unstyled">
+                <!-- <li><a href="#" class="py-2 d-block">Shop</a></li> -->
+                <li><a href="#" class="py-2 d-block">About</a></li>
+                <li><a href="#" class="py-2 d-block">Journal</a></li>
+                <li><a href="#" class="py-2 d-block">Contact Us</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-4">
+             <div class="ftco-footer-widget mb-4">
+              <h2 class="ftco-heading-2">Help</h2>
+              <div class="d-flex">
+	              <ul class="list-unstyled mr-l-5 pr-l-3 mr-4">
+	                <li><a href="#" class="py-2 d-block">Shipping Information</a></li>
+	                <li><a href="#" class="py-2 d-block">Returns &amp; Exchange</a></li>
+	                <li><a href="#" class="py-2 d-block">Terms &amp; Conditions</a></li>
+	                <li><a href="#" class="py-2 d-block">Privacy Policy</a></li>
+	              </ul>
+	              <ul class="list-unstyled">
+	                <li><a href="{% url 'faq:faq' %}" class="py-2 d-block"> <i class="fas fa-question-circle"></i> FAQs</a></li>
+	                <li><a href="{% url 'browse:contact' %}" class="py-2 d-block"> <i class="fas fa-envelope"></i> Contact</a></li>
+	              </ul>
+	            </div>
+            </div>
+          </div>
+          <div class="col-md">
+            <div class="ftco-footer-widget mb-4">
+            	<h2 class="ftco-heading-2">Have a Questions?</h2>
+            	<div class="block-23 mb-3">
+	              <ul>
+	                <!-- <li><span class="icon icon-map-marker"></span><span class="text">203 Fake St. Mountain View, San Francisco, California, USA</span></li> -->
+	                <!-- <li><a href="#"><span class="icon icon-phone"></span><span class="text">+2 392 3929 210</span></a></li> -->
+	                <li><a href="#"><span class="icon icon-envelope"></span><span class="text">Billing Profile</span></a></li>
+	              </ul>
+	            </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 text-center">
+
+           
+          </div>
+        </div>
+      </div>
+    </footer>
+    
+  
+
+  <!-- loader -->
+
+
+  <div id="ftco-loader" class="show fullscreen">
+    
+    <svg class="circular" width="48px" height="48px">
+      
+      <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/>
+      
+      <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/>
+
+      
+    </svg>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <script src="{% static 'new_home_static/js/jquery.min.js' %}"></script>
+  <script src="{% static 'new_home_static/js/jquery-migrate-3.0.1.min.js' %}"></script>
+  <script src="{% static 'new_home_static/js/popper.min.js' %}"></script>
+  <script src="{% static 'new_home_static/js/bootstrap.min.js' %}"></script>
+  <script src="{% static 'new_home_static/js/jquery.easing.1.3.js' %}"></script>
+  <script src="{% static 'new_home_static/js/jquery.waypoints.min.js' %}"></script>
+  <script src="{% static 'new_home_static/js/jquery.stellar.min.js' %}"></script>
+  <script src="{% static 'new_home_static/js/owl.carousel.min.js' %}"></script>
+  <script src="{% static 'new_home_static/js/jquery.magnific-popup.min.js' %}"></script>
+  <script src="{% static 'new_home_static/js/aos.js' %}"></script>
+  <script src="{% static 'new_home_static/js/jquery.animateNumber.min.js' %}"></script>
+  <script src="{% static 'new_home_static/js/bootstrap-datepicker.js' %}"></script>
+  <script src="{% static 'new_home_static/js/scrollax.min.js' %}"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+  <script src="{% static 'new_home_static/js/google-map.js' %}"></script>
+  <script src="{% static 'new_home_static/js/main.js' %}"></script>
+  
+    {% block script %} {% endblock %}
+   </body>
+</html>

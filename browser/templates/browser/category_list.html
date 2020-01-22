@@ -1,0 +1,193 @@
+{% extends 'user_account/base.html' %}
+
+{% block title %} Explore {%endblock%}
+{% block content %}
+
+<div class="container-fluid mb-5" style="margin-top:65px;">
+    <div class="row ">
+
+
+        <div class="col-md-3 mt-2">
+            <div class="card">
+                <div class="card-header bg-custom-dark text-center text-light">
+                    <h3>Category</h3>
+                </div>
+                <div class="card-body text-center">
+                    <!-- A vertical navbar -->
+                     
+
+                        
+                       <h4 class="btn btn-primary d-block">{{category.c_title}}</h4>
+                       <!-- <h4 class="btn btn-primary d-block">{{cat.category_post}}</h4> -->
+
+                     
+                      
+                     
+
+                        
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <div class="col-md-6">
+<!--sssssssssssssssssssssssssssssssssssssssssssssssssssssssss-->
+{% if request.user.is_authenticated %}
+          <div class="card text-center bg-dark">
+            <div class="card-header">
+              <h4 class="text-light">Auction your Own Item</h4>
+            </div>
+            <div class="card-body">
+              <a href="{% url 'browse:item_create' %}" class="btn btn-secondary">Post Item</a>
+            </div>
+          </div>
+
+          {% else %}
+          <div class="card text-center bg-dark">
+            <div class="card-header">
+              <h4 class="text-light">Login to Bid or Auction</h4>
+            </div>
+            <div class="card-body">
+              <a href="{% url 'login' %}" class="btn btn-secondary">Login</a>
+              <a href="{% url 'register' %}" class="btn btn-secondary">Register</a>
+            </div>
+          </div>
+
+{% endif %}
+
+            <div class="row">
+              
+
+              
+            
+
+            {% for object in object_list %}
+            <div class="col-md-6">
+          <div class="card mb-4 mt-2">
+              <div class="card-header" style="background-color:rgb(21, 68, 68);">
+                  
+                          <h4 class="text-light d-inline">{{object.title}}</h4>
+
+                          <span class="float-right text-white cd100"><i class="fas fa-clock"> <span>Time left 5 days</span></i></span>
+                 
+              </div>
+
+         
+              
+              <div class="card-body">
+                  {%if object.image %}
+                  <img src="{{object.image.url}}" alt=""  width="30%" style="margin-left:35%;">
+                  {% endif %}
+              </div>
+              <div class="card-footer text-center ">
+                  <!-- <span class="pr-4 mb-2 btn btn-dark"><a class="text-light" href="{{object.get_absolute_url}}">Buy Out <i class="fas fa-bullhorn"></i></a></span> -->
+                  <span  class="pr-4 mb-2 btn btn-info"><a class="text-white" href="{{object.get_absolute_url}}">Current Bid <i class="fas fa-comment-dollar"></i></a></span>
+                  <span  class="pr-4 mt-2 btn btn-danger"><a class="text-white" href="{{object.get_absolute_url}}">Place Bid <i class="fas fa-funnel-dollar"></i></a></span>
+                  <span  class="pr-4 mt-2 btn btn-warning"><a class="text-white" href="{{object.get_absolute_url}}">Details <i class="fas fa-question-circle"></i></a></span>
+
+              </div>
+          </div>
+        </div>
+
+          {% endfor %}
+        </div>
+
+          <!------------------------------------->
+
+
+        <!--sssssssssssssssssssssssssssssssssssssssssssssssssssssssss-->
+     
+
+
+          <!------------------------------------->
+
+
+       <!--sssssssssssssssssssssssssssssssssssssssssssssssssssssssss-->
+
+
+
+          <!------------------------------------->
+
+
+       <!--sssssssssssssssssssssssssssssssssssssssssssssssssssssssss-->
+
+
+          <!------------------------------------->
+
+        </div>
+
+
+        
+    </div>
+
+
+
+
+
+    <!--pagination-->
+
+    <div class="row">
+            <div class="col-md-6 offset-md-5">
+
+              {% if object_list.has_other_pages %} <!--akta if dise..jodi amar kono post nah thake error jodi nah kore tai-->
+
+              <ul class="pagination">
+
+
+               
+               {% if object_list.has_previous %}
+
+               <li class="page-item">
+                  <a class="page-link" href="?page={{object_list.previous_page_number}}">&laquo; Prev</a>
+                </li>
+
+                <!--ami aikhane akta else lagaisi bootstrap theke copy paste-->
+                {% else %}
+                <li class="page-item disabled">
+                  <a href="" class="page-link">First</a>
+                </li>
+                {% endif %}
+                    <!---------------------->
+
+                {%for i in object_list.paginator.page_range %} 
+                <!--tui onk gula li korsis.. ami akta variable nisi I jeta check korse
+                koita page ase.aikhane page_range django er akta function.documention follow korsi..mone kor 3 ta page ase per page a 3 ta kore jeta view
+            te likhsi.. akhon ami no gula loop korbo.mane amar 3 ta page ase..3 bar loop-->
+                 {%if object_list.number == i %}  
+                 <!--sortho disi je page no jodi 2 hoi..ar I ow jodi 2 hoi tahole amar 2 no page a ashbe ar bootstrap er active class show korbe.mane current jeta tui likhsis-->
+                <li class="page-item active"><a  class="page-link">{{i}}<!--ata holo i=2 --></a></li>
+                {%else %} <!--else ai logic ta ar uporer logic same jinish..khali active page sara baki page gula-->
+                <li class="page-item"><a href="?page={{i}}" class="page-link">{{i}}</a></li>
+                 {%endif %}
+                {% endfor %}
+                <!--loop shes-->
+
+
+                <!--next er jonno -->
+                {% if object_list.has_next %}
+
+               <li class="page-item">
+                  <a class="page-link" href="?{{page_request_var}}={{object_list.next_page_number}}">Next &raquo; </a>
+                </li>
+
+                {% else %}
+                <li class="page-item disabled">
+                  <a href="" class="page-link">Last</a>
+                </li>
+                {% endif %}
+              
+
+              </ul>
+            </div>
+
+            {%endif %} <!--if shes next er endif ata-->
+
+          </div>
+
+          <!--ending pagination-->
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,101 @@
+
+
+{% extends 'nilam_admin/dashboard.html' %}
+
+
+
+{% block content %}
+
+
+
+
+
+
+
+
+
+
+          <!-- Page Heading -->
+          <h1 class="h3 mb-2 text-gray-800 text-center">{{product.title}}</h1>
+
+          <!-- DataTales Example -->
+          <div class="card shadow mb-4">
+
+                <nav class="breadcrumb">
+                        <a class="breadcrumb-item" href="#">Dashboard</a>
+                        <a class="breadcrumb-item" href="#">Contact</a>
+                        <a class="breadcrumb-item" href="{% url 'nilam_admin:all' %}">All Message</a>
+                        <span class="breadcrumb-item active">{{obj.title}}</span>
+                      </nav>
+
+
+
+
+
+                <div class="card-header"><b>Message</b>:{{obj.title}}</div>
+                <div class="card-header"><b>Mail:</b> {{obj.email}}</div>
+                <div class="card-body">
+                    
+                    <p><b>Description</b>: {{obj.description | safe | linebreaks}}</p>
+                   
+                </div>
+                <div class="card-header"><b>Message Sent:</b> {{obj.timestamp}} ago</div>
+              
+
+
+                <div class="card-header"></div>
+                {% if obj.active == True %}
+                <div class="card-header text-white bg-success text-center"><b>Message seen</b></div>
+                {% else %}
+                <div class="card-header text-white bg-danger text-center"><b>Message not yet seen</b></div>
+                {% endif %}
+
+
+                {%if obj.active == False %}
+                <div class="card-footer text-center">
+
+                    <form action="" method="POST">
+                        {% csrf_token %}
+
+                        {{form}}
+                        <input type="submit" class="btn btn-outline-success" value="Mark as seen">
+                    </form>
+                    <!-- <a href="/admin/browser/product/{{product.id}}/change/" class="btn btn-success">Mark as seen</a> -->
+                   
+                </div>
+
+                {% endif %}
+
+
+
+
+            </div>
+        
+        <!-- /.container-fluid -->
+
+
+
+
+
+
+
+
+
+
+
+
+        <a class="scroll-to-top rounded" href="#page-top">
+            <i class="fas fa-angle-up"></i>
+          </a>
+        
+
+
+{% endblock %}
+
+
+
+
+
+
+
+

@@ -1,0 +1,125 @@
+
+
+{% extends 'nilam_admin/dashboard.html' %}
+
+
+
+{% block content %}
+
+
+
+
+
+
+
+
+
+
+
+            <!-- <h4></h4> -->
+<h4 class="bg-info text-center text-light">Bid Info-Single item</h4>
+          <!-- Page Heading -->
+          <h4 class="bg-success mb-2 text-white p-2 text-center"> <b>{{win_bid.product_title}}</b> <span class="badge badge-primary">{{win_bid.product_title.p_category}}</span></h4>
+          <p class="bg-danger text-white text-center ">{{win_bid.user}} winning with ${{win_bid.current_price}} Last bid ${{win_bid.bid_price}} where starter price was ${{win_bid.product_title.stating_price}}</p>
+
+          <!-- DataTales Example -->
+          <div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">DataTable</h6>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered table-striped" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>Bidder</th>
+                     
+                    
+                    
+                     
+                     
+                      <th>Valid</th>
+                      <th></th>
+                     
+                    </tr>
+                  </thead>
+                  <tfoot>
+                    <tr>
+                    <th>Bidder</th>
+                     
+                     
+                    
+                      
+                     
+                      <th>Valid</th>
+                      <th></th>
+                      </tr>
+                    </tr>
+                  </tfoot>
+
+
+                  <tbody>
+
+                    {% for bid in bid_list %}
+
+                    <tr>
+                      <td>{{bid.user}}</td>
+                     
+                    
+                      
+                      
+                      {% if bid.product_title.active == True %}
+                      <td class="text-success">Service on</td>
+                      {% else %}
+                      <td class="text-danger">Service off</td>
+                      {% endif%}
+
+
+                      <td>
+                        {% if bid.user == win_bid.user %}
+                        <span class="badge badge-success">Win</span>
+                        {% else %}
+                        <span class="badge badge-danger">loss</span>
+                        {% endif %} 
+                    </td>
+                    </tr>
+                    {% endfor %}
+
+
+
+                  
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <!-- /.container-fluid -->
+
+
+
+
+
+
+
+
+
+
+
+
+        <a class="scroll-to-top rounded" href="#page-top">
+            <i class="fas fa-angle-up"></i>
+          </a>
+        
+
+
+{% endblock %}
+
+
+
+
+
+
+
+

@@ -1,0 +1,57 @@
+{% extends 'user_account/base.html' %}
+{% load crispy_forms_tags %}
+{% block title %} Create {%endblock%}
+{% block content %}
+
+<div class="container-fluid mb-5" style="margin-top:65px;">
+    <div class="row ">
+
+        <div class="col-md-6 offset-md-3">
+            <div class="card">
+                <div class="card-header text-center">
+                    <h4>Post Item for Auction</h4>
+                </div>
+                <div class="card-body">
+                        <form action="" method="POST"  enctype='multipart/form-data'>
+                                {% csrf_token %}
+                                {{form|crispy}}
+                          
+                                <input type="submit" value="Submit">
+                            </form>
+                </div>
+            </div>
+        </div>
+
+        
+      
+
+        </div>
+
+
+            
+
+
+
+      
+<!--sssssssssssssssssssssssssssssssssssssssssssssssssssssssss-->
+
+
+          <!------------------------------------->
+
+
+        <!--sssssssssssssssssssssssssssssssssssssssssssssssssssssssss-->
+     
+
+
+          <!------------------------------------->
+
+
+
+
+
+   
+          <!--ending pagination-->
+</div>
+
+
+{% endblock %}

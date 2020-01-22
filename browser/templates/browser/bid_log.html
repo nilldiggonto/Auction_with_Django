@@ -1,0 +1,190 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load staticfiles %}
+{% block content %}
+
+
+<div class="hero-wrap hero-bread" style="background-image: url({% static 'new_home_static/images/bg_6.jpg' %});">
+  <div class="container">
+    <div class="row no-gutters slider-text align-items-center justify-content-center">
+      <div class="col-md-9 ftco-animate text-center">
+          <!-- <p class="breadcrumbs"><span class="mr-2"><a href="{% url 'live:live-user-bid-log' %}">Live</a></span> <span>Bid Log</span></p> -->
+
+          
+            
+            
+          
+        <h1 class="mb-0 bread bg-dark text-white">You have Bid {{bid_count}} Items</h1>
+        <h4 class="mb-0 bread bg-dark text-white">Regular Auction</h4>
+
+
+
+        <a class="text-white btn btn-dark mt-2"  href="{% url 'browse:bidder' %}">
+            <p class="breadcrumbs  text-white "><span class="text-white">
+                All Bid Activity</span>
+            </p>
+          </a>
+
+
+          <a class="text-white btn btn-dark mt-2"  href="{% url 'live:live-user-bid-log' %}">
+              <p class="breadcrumbs  text-white "><span class="text-white">
+                  Live Bid Log</span>
+              </p>
+            </a>
+
+
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+<div class="container-fluid mb-5" >
+    <div class="row ">
+
+
+      
+
+
+
+
+        <div class="col-md-12">
+<!--sssssssssssssssssssssssssssssssssssssssssssssssssssssssss-->
+{% if request.user.is_authenticated %}
+          <!-- <div class="card text-center bg-dark">
+            <div class="card-header">
+              <h4 class="text-light">Welcome! {{ user.username }}</h4>
+              <h4>Name: {{user.first_name}} {{user.last_name}}</h4>
+              <h4>Email: {{user.email}}</h4>
+            </div>
+            <div class="card-body">
+              <a href="{% url 'browse:item_create' %}" class="btn btn-secondary">Post Item</a>
+            </div>
+          </div> -->
+
+         
+        
+
+{% endif %}
+
+            <div class="row">
+              {% if bidder %}
+                {% for object in bidder %}
+                
+                <div class="col-md-12">
+              <div class="card mb-4 mt-2  bg-dark">
+                  <div class="card-header" style="background-color:rgba(1, 7, 7, 0.534);">
+                      
+                             
+
+                          
+                              <span>
+                                  <img width="10%" src="{{object.product_title.image.url}}" alt="">
+                              </span>
+                              <span class="text-light d-inline">{{object.product_title}}</span>
+                              <!-- <span>You have bidded For this Item</span> -->
+
+                              {% if object.product_title.item_post == False %}
+                              <span style="float:right; margin-top:2%;" class=" btn btn-danger"><a class="text-white" href="{{object.product_title.get_absolute_url}}">Bid Ended | See result <i class="fas fa-question-circle"></i></a></span>
+                              {% else %}
+                              <span style="float:right; margin-top:2%;"  class="  btn btn-warning"><a class="text-dark" href="{{object.product_title.get_absolute_url}}">Go Check <i class="fas fa-question-circle"></i></a></span>
+          
+                              {% endif %}
+
+                              
+    
+                     
+                  </div>
+    
+             
+                  
+                  <!-- <div class="card-body">
+                     <p>You have Bidded for this item</p>
+
+                
+                     
+
+
+
+
+
+                  </div> -->
+
+                  <!-- <div class="card-footer text-center ">
+                    
+                    {% if object.product_title.item_post == False %}
+                    <span class="pr-4 btn btn-danger"><a class="text-white" href="{{object.product_title.get_absolute_url}}">Bid Ended | See result <i class="fas fa-question-circle"></i></a></span>
+                    {% else %}
+                    <span  class="pr-4  btn btn-warning"><a class="text-white" href="{{object.product_title.get_absolute_url}}">Details <i class="fas fa-question-circle"></i></a></span>
+
+                    {% endif %}
+
+                </div> -->
+                 
+              </div>
+            </div>
+    
+              {% endfor %}
+
+              {% else %}
+
+              <div class="col-md-12">
+                  <div class="card text-center">
+                      <div class="card-header bg-danger text-light">
+                        <h4>No details available</h4>
+                      </div>
+                    </div>
+
+              </div>
+
+              
+
+              {% endif %}
+
+
+
+            </div>
+
+          <!------------------------------------->
+
+
+        <!--sssssssssssssssssssssssssssssssssssssssssssssssssssssssss-->
+     
+
+
+          <!------------------------------------->
+
+
+       <!--sssssssssssssssssssssssssssssssssssssssssssssssssssssssss-->
+
+
+
+          <!------------------------------------->
+
+
+       <!--sssssssssssssssssssssssssssssssssssssssssssssssssssssssss-->
+
+
+          <!------------------------------------->
+
+        </div>
+
+
+      
+    </div>
+
+
+
+
+
+
+          <!--ending pagination-->
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,162 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+{% block title %} Create {%endblock%}
+
+{%block style %}
+
+    <style>
+            .card-header {
+                padding: 0.75rem 1.25rem;
+                margin-bottom: 0;
+                background-color: rgb(0, 0, 0);
+                border-bottom: none;
+            }
+
+            .card{
+                color:whitesmoke;
+                border: none;
+                background-color:  #000000;
+            }
+
+           /* #error_1_id_title,#error_1_id_description,#error_1_id_price,#error_1_id_stating_price{
+                display:none;
+              } */
+
+              .invalid-feedback {
+                
+                display: block !important;
+            }
+
+            #id_image {
+                background: rgb(124, 7, 7) !important;
+                width: 100%;
+            }
+
+            .btn-custom {
+                color: #fff;
+                background-color: #000000;
+                border-color: #ffffff;
+            }
+            .btn-custom:hover{
+                color: #fff;
+                background-color: #022b22;
+                border-color: #ffffff;
+            }
+
+            .card-header{
+                border-bottom: 2px solid white !important;
+            }
+    </style>
+
+{% endblock %}
+
+
+
+{% block content %}
+
+<div class="container-fluid mb-5" style="margin-top:65px;">
+    <div class="row ">
+{% if billing %}
+
+            {%if category %}
+
+        <div class="col-md-8 offset-md-2">
+            <div class="card">
+                <div class="card-header text-center">
+                    <h4 class="text-light" style="font-weight: bold;"><i class="fas fa-satellite-dish"></i> Host live Auction </h4>
+                </div>
+                <div class="card-body">
+
+
+                        <form action="" method="POST"  enctype='multipart/form-data'>
+                            {% csrf_token %}
+                            {{form|crispy}}
+                            
+                        <button style="width:100%;" type="button" class="btn btn-custom" data-toggle="modal" data-target="#auctionModal2">
+                               LIVE AUCTION
+                               </button>
+                               
+
+
+                                <div class="modal fade" id="auctionModal2">
+                                        <div class="modal-dialog modal-sm">
+                                          <div class="modal-content">
+                                          
+                                            <!-- Modal Header -->
+                                            <div class="modal-header">
+                                              <h4 style="width:100%" class="modal-title text-center">Are you sure?</h4>
+                                              <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            </div>
+                                            
+                                            <!-- Modal body -->
+                                            <div class="modal-body">
+                            <input style="width:100%;"  class="btn btn-success text-center" type="submit" value="LIVE AUCTION">
+                          
+                                            </div>
+                                            
+                                            <!-- Modal footer -->
+                                            <!-- <div class="modal-footer">
+                                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            </div> -->
+                                            
+                                          </div>
+                                        </div>
+                                      </div>
+                          
+                                <!-- <input class="btn btn-outline-dark" type="submit" value="Submit"> -->
+                            </form>
+                </div>
+            </div>
+        </div>
+
+        {% else %}
+
+        <div class="col-md-12">
+                <div class="card text-center">
+                    <h4 class=" text-light">
+                      <span><img  src="{% static 'new_home_static/images/tenor.gif' %}" alt=""></span>
+                     <span class="badge badge-danger"><i class="fas fa-wrench"></i> Under construction <i class="fas fa-wrench"></i></span>
+                      <span><img  src="{% static 'new_home_static/images/tenor.gif' %}" alt=""></span>
+                    </h4>
+      
+                  </div>
+             </div>
+
+
+             {% endif %}
+
+
+
+
+
+
+        {% else %}
+        <div class="col-md-6 offset-md-3">
+                <div class="card">
+                    <div class="card-header text-center">
+                        <h4 class="text-light">You Must have a address to post item</h4>
+                        <a href="{% url 'billing:bill' %}" class="btn btn-info">Create Address</a>
+                    </div>
+                  
+                </div>
+            </div>
+
+
+
+
+        {% endif %}
+
+        
+      
+
+        </div>
+
+
+</div>
+
+
+
+
+
+{% endblock %}

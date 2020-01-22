@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %}Nilam | Category{%endblock %}
+
+{% block content %}
+
+
+            
+<section id="home-section" class="hero" style="margin-bottom: 50px;">
+          
+    </section>
+
+
+
+    <section class="ftco-section ftco-choose ftco-no-pb ftco-no-pt">
+          <div class="container">
+                  <div class="row ">
+
+                    
+
+                      
+{% if object_list %}
+
+                    {% for object in object_list %}
+                      
+
+
+                      <div class="col-md-12" style="margin-top:35px; border-radius:5px; margin-bottom:50px;">
+                          <div class="choose-wrap  img p-5 d-flex align-items-end" style="background-image: url({{object.image.url}});">
+  
+                          <div class="text text-center text-white px-2">
+                              <h4 style="background-color:black; opacity:.7; border-radius:5px;" class="text-white"> {{object.c_title}}</h4>
+                              <p><a href="{{object.get_absolute_url}}" class="btn btn-black px-3 py-2">Explore now</a></p>
+                          </div>
+                      </div>
+                      </div>
+
+                      {% endfor%}
+                      {% else %}
+
+
+                      <div class="col-md-12 mb-4">
+                          <div class="card text-center">
+                              <h4 class=" text-light">
+                                <span><img  src="{% static 'new_home_static/images/tenor.gif' %}" alt=""></span>
+                               <span class="badge badge-danger"><i class="fas fa-wrench"></i> Under construction <i class="fas fa-wrench"></i></span>
+                                <span><img  src="{% static 'new_home_static/images/tenor.gif' %}" alt=""></span>
+                              </h4>
+                
+                            </div>
+                       </div>
+
+                      {% endif %}
+
+
+                      
+                      
+              
+                      
+                  </div>
+                </div>
+          </div>
+      </section>
+
+
+
+{% endblock %}

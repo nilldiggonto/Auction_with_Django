@@ -1,0 +1,148 @@
+
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %} Login {%endblock%}
+
+{% block style %}
+ <style>
+   .card-header{
+     background-color:rgba(0, 0, 0, 0) !important;
+   }
+ </style>
+{% endblock %}
+{% block content %}
+        <!--navigation Area-->
+     
+              <!--Ending Navigation Area-->
+
+
+              <!--content Area-->
+              <div class="container" >
+
+                 
+
+                  <div class="row no-gutters  bg-custom-dark" style="margin-top:80px; border-radius:15px; opacity:.8;">
+
+
+
+
+                     
+
+
+
+                      <div class="col-md-6 d-none d-md-block"  >
+                        
+                        <div class="card  text-light bg-custom-dark" style="margin-top:10px; border:none !important;">
+                          <div class="card-body text-center">
+
+                             <img class="mb-2" style="margin-left:50px;" src="{% static 'new_home_static/images/auction_logo.png' %}" alt="">
+                        
+                            <h2 class="text-dark" >Nilam.com</h2>
+                            <p class="text-dark">Create an account to get full nilam experience</p>
+                          </div>
+
+                          <div class="card-footer text-center" style="border:none !important">
+                            <!-- <p>[Update your account to get full premeium access]</p> -->
+                          </div>
+                        </div>
+
+                      </div><!--.col-md-6/1-->
+
+                      <!-- <div class="col-md-1" >
+                       
+                      </div> -->
+
+                      <div class="col-md-6 col-xs-12"   >
+
+                        
+                         <div class="card bg-custom-dark" style="border:none !important" >
+                              
+                           <div class="card-header text-center text-white">
+                             <h4 ><i class="fas fa-user-injured"></i> Login <span>into your account</span></h4>
+                             <!-- <p>Create your Nilam account. Its completly free</p> -->
+                             
+                           </div><!--.card-header-->
+
+                           <div class="card-body">
+
+
+
+
+                              {% include '_alert.html' %}
+
+
+
+                              <form action="" method="POST" id="form-box" class="p-2">
+
+                                  {% csrf_token %}
+
+                                 <div class="form-group input-group">
+                                    <div class="input-group-prepend">
+                                      <span class="input-group-text input-u-custom"><i class="fas fa-user"></i></span>
+                                    </div>
+                                    <input type="text" name="username" class="form-control input-b-custom" placeholder="Enter your Username" required>
+                                  </div>
+
+
+                                  <div class="form-group input-group">
+                                      <div class="input-group-prepend">
+                                        <span class="input-group-text input-u-custom"><i class="fas fa-key"></i></span>
+                                      </div>
+                                      <input type="password" name="password" class="form-control input-b-custom" placeholder="Password" required>
+                                    </div>
+
+
+                  
+                                  <div class="form-group">
+                                    <input style="font-weight:bolder; padding: 10px; border-radius:12px; background:white;color:black;" type="submit" name="submit" id="submit" class="btn btn-primary btn-block" value="Login">
+                                  </div>
+                                </form>
+
+
+
+
+
+
+
+
+
+
+
+
+                                <p class="text-center text-dark">Not a member? <span><a class="text-info" href="{% url 'register' %}">Register here!!</a></span></p>
+
+
+
+
+
+                           </div><!--.card-body-->
+                         </div><!--.card-->
+  
+                        </div><!--.cold-md-6/2-->
+                  </div><!--.row-->
+              </div><!--.container-->
+
+
+
+
+
+
+              <!-- Footer -->
+<!-- <footer class="navbar footer fixed-bottom footer-light footer-shadow content container-fluid bg-primary text-white">
+
+        
+        
+        
+      
+      </footer> -->
+      <!-- Footer -->
+        
+
+{% endblock %}
+
+
+
+
+
+
+

@@ -1,0 +1,257 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+{% block content %}
+
+
+
+<div class="hero-wrap hero-bread" style="background-image: url({% static 'new_home_static/images/orange.png' %});">
+    <div class="container">
+      <div class="row no-gutters slider-text align-items-center justify-content-center">
+        <div class="col-md-9 ftco-animate text-center">
+            {% include 'partial/_alert.html' %}
+            
+            <p class="breadcrumbs"><span class="mr-2"><a href="#"></a></span>{% if  billing %} <span>{{billing.user}} {%else%} Create {%endif%}</span></p>
+          <h1 class="mb-0 bread">Profile Info</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+  {% if billing %}
+
+
+
+
+  <div class="container emp-profile mt-4 mb-4">
+        <form method="post">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="profile-img">
+                        <img src="{% static 'new_home_static/images/pro_pic.jpg' %}" style="max-width:100%; height:180px;" alt=""/>
+                      
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="profile-head">
+                                <h5>
+                                    {{billing.user}}
+                                </h5>
+                               
+                                <p class="proile-rating">Total auction items : <span>{{all_product}}</span></p>
+                        <ul class="nav nav-tabs" id="myTab" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active " id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">About</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Address</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <!-- <input type="submit" class="btn btn-info" name="btnAddMore" value="Edit Profile"/> -->
+                    <a href="{{billing.get_absolute_url}}" class="btn btn-info">Edit Profile</a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                  
+                </div>
+                <div class="col-md-8">
+                    <div class="tab-content profile-tab" id="myTabContent">
+                        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>User Name</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p>{{billing.user}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>Name</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p>{{billing.user.first_name}} {{billing.user.last_name}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>Email</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p>{{billing.user.email}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>Phone</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p>{{billing.phone}}</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                            <div class="col-md-6">
+                                                <label>NID</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>{{billing.nid}}</p>
+                                            </div>
+                                        </div>
+                                    <!-- <div class="row">
+                                        <div class="col-md-6">
+                                            <label></label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p>Web Developer and Designer</p>
+                                        </div>
+                                    </div> -->
+                        </div>
+                        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>Address</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p>{{billing.bil_address}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>City</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p>{{billing.city}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>Zip</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p>{{billing.bil_zip}}</p>
+                                        </div>
+                                    </div>
+                                    <!-- <div class="row">
+                                        <div class="col-md-6">
+                                            <label>English Level</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p>Expert</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>Availability</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p>6 months</p>
+                                        </div> -->
+                                    <!-- </div> -->
+                            <!-- <div class="row">
+                                <div class="col-md-12">
+                                    <label>Your Bio</label><br/>
+                                    <p>Your detail description</p>
+                                </div>
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>           
+    </div>
+
+
+{% else %}
+<div class="container mt-4"  style="margin-bottom:45px;">
+    <div class="row">
+        <div class="col-md-12">
+                <div class="card">
+                        <div class="card-header text-center text-light">
+                            <h4>Create Your Address</h4>
+                            <a href="{% url 'billing:bill' %}" class="btn btn-info">Create Address</a>
+                        </div>
+                      
+                    </div>
+        </div>
+    </div>
+</div>
+
+{% endif %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 
+<div class="container mt-4 mb-4">
+    <div class="row">
+
+        {% if billing %}
+
+        <div class="col-md-6 offset-md-3">
+            <div class="card">
+                <div class="card-header text-center">
+                    <h4>Address</h4>
+                </div>
+
+                <div class="card-body">
+                    <h4>Your Address: {{billing.bil_address}}</h4>
+                    <h4>Your city:{{billing.city}}</h4>
+                    <h4>Your zip Code: {{billing.bil_zip}}</h4>
+                    <h4>Phone: {{billing.phone}}</h4>
+
+                </div>
+
+            </div>
+        </div>
+
+{% else %}
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header text-center">
+                    <h4>You better create then check!!</h4>
+                </div>
+            </div>
+        </div>
+{% endif %}
+
+
+    </div>
+</div> -->
+
+
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends "admin/base.html" %}
+
+
+{% load staticfiles %}
+
+
+{% block title %} Auction House{% endblock %}
+
+
+{% block branding %}
+
+ <h1 id="head">
+     <img src="{% static 'image/auction.png' %}" alt="" class="brand_img" >
+     Auction House
+ </h1>
+
+{% endblock %}
+
+
+{% block extrastyle %}
+
+ <link rel="stylesheet" href="{% static 'css/admin.css' %}">
+
+{% endblock %}
+
+
+{% block extrahead %}
+<link rel="icon" href="http://www.iconsalot.com/asset/icons/vectors-market/web-and-networking/512/auction-icon.png" sizes="48x48" />
+{% endblock %}

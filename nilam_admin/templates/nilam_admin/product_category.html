@@ -1,0 +1,116 @@
+
+
+{% extends 'nilam_admin/dashboard.html' %}
+
+
+
+{% block content %}
+
+
+
+
+
+
+
+
+
+
+
+          <!-- Page Heading -->
+          <h1 class="h3 mb-2 text-gray-800 text-center">All Products</h1>
+
+          <!-- DataTales Example -->
+          <div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered table-striped" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                            <th>Title</th>
+                            <th>Image</th>
+                            <th>Creation Date</th>
+                            <th>Update Date</th>
+                           
+                           
+                           
+                           
+                            <!-- <th></th> -->
+                     
+                    </tr>
+                  </thead>
+                  <tfoot>
+                    <tr>
+                        
+                       
+                        <th>Title</th>
+                        <th>Image</th>
+                        <th>Creation Date</th>
+                        <th>Update Date</th>
+                       
+                       
+                       
+                       
+                        <!-- <th></th> -->
+                      </tr>
+                    </tr>
+                  </tfoot>
+
+
+                  <tbody>
+
+                    {% for category in category_list %}
+
+                    <tr>
+                    
+                      <td>{{category.c_title}}</td>
+                      <td><img style="max-width:100%; height:50px;" src="{{category.image.url}}" alt=""></td>
+                
+
+                      <td>{{category.created_at|timesince}}</td>
+                      <td>{{category.updated_at|timesince}}</td>
+
+                      <!-- <td><a href="/admin/browser/category_post/{{category.id}}/change/" class="btn btn-sm btn-outline-danger">Edit/Delete</a></td> -->
+                    </tr>
+                    {% endfor %}
+
+
+
+                  
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <!-- /.container-fluid -->
+
+
+
+
+
+
+
+
+
+
+
+
+        <a class="scroll-to-top rounded" href="#page-top">
+            <i class="fas fa-angle-up"></i>
+          </a>
+        
+
+
+{% endblock %}
+
+
+
+
+
+
+
+

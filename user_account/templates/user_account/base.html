@@ -1,0 +1,174 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>{%block title%} {%endblock%}</title>
+
+    <link rel="shortcut icon" href="http://www.iconsalot.com/asset/icons/vectors-market/web-and-networking/512/auction-icon.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <link rel="stylesheet" href="https://bootswatch.com/4/pulse/bootstrap.css">
+    <link href="https://fonts.googleapis.com/css?family=Gugi|Maven+Pro" rel="stylesheet">
+
+
+    <style>
+
+      body{
+        background: url(https://www.welovesolo.com/wp-content/uploads/2014/12/p17ugikg31193hpuc184u1ahk15jt5-details.jpg);
+      }
+      .form-control {
+        color :#fff !important;
+        background: #252525 !important;
+      }
+      .bg-custom-dark{
+        background: #252525;
+      }
+
+      .custom-form{
+        margin-left:20px;
+       
+      }
+
+      .custom-input{
+        border:1px solid white;
+        border-radius: 5px;
+        background: #252525;
+        
+      }
+
+      .custom-search{
+        position: absolute;
+        left:703px;
+      }
+
+      .footer {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        background-color:#252525;
+        color: white;
+        text-align: center;
+     }
+
+     .card{
+       border:none;
+      
+     }
+
+     .input-b-custom{
+       background:none;
+       border-top-right-radius: 10px;
+     }
+
+     .input-u-custom{
+       color:white;
+       background: none;
+       border-bottom-left-radius: 10px;
+     }
+
+     .alert-error {
+        color: #e4d2d7;
+        background-color: #d30c0c7c;
+        border-color: #fa0000;
+    }
+
+
+
+    #div_id_current_price label{
+      display: none;
+    }
+
+     @media only screen and (max-width: 991px) {
+
+      .navbar-collapse{
+        margin-left:134px !important;
+      }
+
+      .navbar-nav{
+        display:inline !important;
+      }
+      .navbar-nav form{
+        display:inline !important; 
+      }
+      .custom-search{
+        top: 80px;
+        left:722px;
+      }
+    }
+
+
+    @media only screen and (max-width: 979px) {
+      .navbar-collapse{
+        margin-left:10px !important;
+      }
+
+      .custom-form input{
+        width:250px !important;
+      }
+
+      .custom-search{
+        left:268px !important;
+      }
+    }
+
+    @media only screen and (max-width: 574px) {
+      .custom-search{
+        top: 96px;
+        left:249px !important;
+      }
+
+    }
+
+    </style>
+
+
+
+
+</head>
+<body>
+
+
+ {% include 'user_account/topbar.html' %}
+
+
+
+  
+{% block content %}
+
+
+
+{% endblock %}
+
+{% include 'user_account/footer.html' %}
+
+    
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script src="{% static 'js/countdown.js' %}"></script>
+<script>
+  $('.cd100').countdown100({
+      
+      endtimeYear: 0,
+      endtimeMonth: 0,
+      endtimeDate: 2,
+      endtimeHours: 19,
+      endtimeMinutes: 0,
+      endtimeSeconds: 0,
+      timeZone: "" 
+     
+  });
+</script>
+
+{%block script %}
+
+{% endblock %}
+
+</body>
+</html>

@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load staticfiles %}
+{% block content %}
+<div class="hero-wrap hero-bread" style="background-image: url({% static 'new_home_static/images/orange.png' %});">
+  <div class="container">
+    <div class="row no-gutters slider-text align-items-center justify-content-center">
+      <div class="col-md-9 ftco-animate text-center">
+          {% include 'partial/_alert.html' %}
+          <p class="breadcrumbs"><span class="mr-2"><a href="#"></a></span> <span>Address</span></p>
+        <h1 class="mb-0 bread">{{update}} Profile Address</h1>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="container mt-4 mb-4">
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+      <div class="card">
+        <div class="card-header text-center "><h4 class="bg-dark text-white">{{update}} Profile Address</h4></div>
+        <div class="card-body">
+          <form action="" method="POST">
+              {%csrf_token%}
+
+              {{form|crispy}}
+
+              <input type="submit" value="Submit" class="btn btn-dark">
+            
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
